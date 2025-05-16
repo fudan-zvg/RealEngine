@@ -1,0 +1,60 @@
+exhaust_test: false
+
+
+# ModelParams
+scene_type: "Kitti360"
+resolution_scales: [1, 2, 4]
+scale_increase_interval: 5000
+cam_num: 2
+eval: True
+# num_pts: 1000000
+#t_init: 0.1
+separate_scaling_t: 0.2
+
+sequence_id: "10750"
+vfov: [-24.9, 2.0]
+hfov: [-90, 90]
+
+# PipelineParams
+
+
+# OptimizationParams
+iterations: 30000
+
+#opacity_lr: 0.005
+
+densify_until_iter: 15000
+densify_grad_threshold: 1e-4
+sh_increase_interval: 2000
+
+
+#lambda_v_reg: 0.01
+
+lambda_lidar: 1e1
+lambda_lidar_median: 1e1
+lidar_decay: 0
+
+only_velodyne: True
+lambda_intensity: 0.05
+lambda_intensity_sh: 0.05
+lambda_raydrop: 0.05
+lambda_smooth: 1e-3
+lambda_chamfer: 1e-1
+lambda_distortion: 1e-2
+lambda_normal_consistency: 1e-1
+thresh_opa_prune: 0.1
+
+test_iterations: [3000, 7000, 15000, 30000]
+random_init_point: 0
+dynamic: True
+sky_depth: False
+
+opacity_lr : 0.05
+velocity_lr : 0.001
+time_split_frac : 1.0
+lambda_self_supervision : 0.5
+lambda_v_reg : 1e0
+t_init : 0.006
+
+num_pts: 3000000
+densify_until_num_points: 10000000

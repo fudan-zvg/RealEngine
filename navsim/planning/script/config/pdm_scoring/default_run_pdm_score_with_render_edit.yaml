@@ -1,0 +1,125 @@
+hydra:
+  run:
+    dir: ${output_dir}
+  output_subdir: ${output_dir}/code/hydra           # Store hydra's config breakdown here for debugging
+  searchpath: # Only <exp_dir> in these paths are discoverable
+    - pkg://navsim.planning.script.config.common
+  job:
+    chdir: False
+
+defaults:
+  - default_common
+  - default_evaluation
+  - default_scoring_parameters
+  - agent: constant_velocity_agent
+  - render: base
+  - _self_
+  - override train_test_split: navtest
+
+object_stats: {
+  'vehicle_1': { "width": 2.0, "length": 4.5, "height": 1.1, "light": 1.5,
+                 "add_T": [ 0, 0, 0 ], "multi_scale": 1 , "rear2center": [ 0.8, 0.23 ] },
+  'vehicle_3': { "width": 1.8, "length": 5.1, "height": 1.5, "light": 2,
+                 "add_T": [ 0, 0, 0 ], "multi_scale": 1 , "rear2center": [ 1.3, 0.43 ] },
+  'vehicle_4': { "width": 1.8, "length": 5.1, "height": 1.5, "light": 5,
+                 "add_T": [ 0, 0, 0 ], "multi_scale": 1 , "rear2center": [ 1.5, 0.40 ] },
+  'vehicle_5': { "width": 2.0, "length": 4.9, "height": 1.3, "light": 5,
+                 "add_T": [ 0, 0, 0 ], "multi_scale": 1 , "rear2center": [ 1.36, 0.32 ] },
+  'vehicle_6': { "width": 1.8, "length": 5.1, "height": 1.5, "light": 15,
+                 "add_T": [ 0, 0, 0 ], "multi_scale": 1 , "rear2center": [ 1.5, 0.35 ] },
+  'vehicle_7': { "width": 1.826, "length": 4.676, "height": 1.415, "light": 3,
+                "add_T": [ 0, 0, 0 ], "multi_scale": 1 , "rear2center": [ 1.35, 0.4 ] },
+  'vehicle_50': { "width": 1.8, "length": 5.1, "height": 1.5,
+                  "add_T": [ 0, 0, 0 ], "multi_scale": 1.0, "rear2center": [ 1.3, 0.43 ] },
+  'vehicle_30': { "width": 1.8, "length": 5.1, "height": 1.7,
+                  "add_T": [ 0, 0, 0 ], "multi_scale": 1.0, "rear2center": [ 1.25, 0.49 ] },
+}
+metric_cache_path: ${oc.env:NAVSIM_EXP_ROOT}/metric_cache # path to metric cache
+gui_trajectory_path: ${oc.env:NAVSIM_DEVKIT_ROOT}/navsim/planning/script/config/gui_traj_edit # path to gui trajectory
+
+eval_tokens_info: [
+  [ "0cc07a3667f45039", [
+    { 'pose': "0cc07a3667f45039_00", "object_name": "vehicle_1" },
+  ]
+  ],
+  [ "0cc07a3667f45039", [
+    { 'pose': "0cc07a3667f45039_01", "object_name": "vehicle_4" },
+  ]
+  ],
+  [ "0cc07a3667f45039", [
+    { 'pose': "0cc07a3667f45039_01", "object_name": "vehicle_4", "mode": "stationary" },
+  ]
+  ],
+  [ "2b1dfa4a1cfc541c", [
+    { 'pose': "2b1dfa4a1cfc541c_00", "object_name": "vehicle_4"},
+  ]
+  ],
+  [ "2b1dfa4a1cfc541c", [
+    { 'pose': "2b1dfa4a1cfc541c_01", "object_name": "vehicle_4", "mode": "stationary"},
+  ]
+  ],
+  [ "2b1dfa4a1cfc541c", [
+    { 'pose': "2b1dfa4a1cfc541c_02", "object_name": "vehicle_6"},
+  ]
+  ],
+  [ "4c34860622605f7f", [
+    { 'pose': "4c34860622605f7f_00", "object_name": "vehicle_6"},
+  ]
+  ],
+  [ "4c34860622605f7f", [
+    { 'pose': "4c34860622605f7f_00", "object_name": "vehicle_7", "mode": "stationary" },
+  ]
+  ],
+  [ "4c34860622605f7f", [
+    { 'pose': "4c34860622605f7f_01", "object_name": "vehicle_7" },
+  ]
+  ],
+  [ "5dd66fecd1b4523b", [
+    { 'pose': "5dd66fecd1b4523b_00", "object_name": "vehicle_7" },
+  ]
+  ],
+  [ "5dd66fecd1b4523b", [
+    { 'pose': "5dd66fecd1b4523b_04", "object_name": "vehicle_7", "relighting_iter": 0 },
+  ]
+  ], # cutin
+  [ "5dd66fecd1b4523b", [
+    { 'pose': "5dd66fecd1b4523b_06", "object_name": "vehicle_7" },
+  ]
+  ],
+  [ "38b01bebf6df5fb8", [
+    { 'pose': "38b01bebf6df5fb8_02", "object_name": "vehicle_6" },
+  ]
+  ],
+  [ "38b01bebf6df5fb8", [
+    { 'pose': "38b01bebf6df5fb8_03", "object_name": "vehicle_6" },
+  ]
+  ],
+  [ "38b01bebf6df5fb8", [
+    { 'pose': "38b01bebf6df5fb8_stationary", "object_name": "vehicle_6", "relighting_iter": 1500 },
+  ]
+  ], # stationary
+  [ "b2ad937212f85714", [
+      { 'pose': "b2ad937212f85714_00", "object_name": "vehicle_1", "relighting_iter": 500 },
+    ]
+  ], # side
+  [ "b2ad937212f85714", [
+      { 'pose': "b2ad937212f85714_03", "object_name": "vehicle_1" },
+    ]
+  ],
+  [ "b2ad937212f85714", [
+      { 'pose': "b2ad937212f85714_04", "object_name": "vehicle_1" },
+    ]
+  ],
+  [ "e1f6521aad635044", [
+    { 'pose': "e1f6521aad635044_00", "object_name": "vehicle_4" },
+  ]
+  ],
+  [ "e1f6521aad635044", [
+    { 'pose': "e1f6521aad635044_01", "object_name": "vehicle_4" },
+  ]
+  ],
+  [ "e1f6521aad635044", [
+    { 'pose': "e1f6521aad635044_brake", "object_name": "vehicle_4", "relighting_iter": 820 },
+  ]
+  ], # brake
+]

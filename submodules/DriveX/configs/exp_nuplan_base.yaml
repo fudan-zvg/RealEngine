@@ -1,0 +1,110 @@
+task: nuplan_scene
+source_path: ./data/nuplan  # /b2ad937212f85714
+pose_refine: true
+resolution: 1
+resolution_scales: [2, 4, 8]
+
+data:
+  split_test: -1
+  split_train: 1
+  type: nuPlan
+  white_background: false
+  selected_frames: [0, 65]
+  cameras: [0,1,2,3,4,5,6,7]
+  extent: 10
+  use_colmap: false
+  filter_colmap: false
+
+model:
+  gaussian:
+    sh_degree: 1
+    fourier_dim: 5
+    fourier_scale: 1.
+    flip_prob: 0.5
+  nsg:
+    include_bkgd: true
+    include_obj: true
+    include_sky: true
+    opt_track: true
+
+  use_color_correction: true
+  color_correction:
+    mode: sensor
+
+  use_pose_correction: true
+  pose_correction:
+    mode: image
+
+train:
+  iterations: 50000
+  test_iterations: [1, 7000, 30000, 50000, 65000, 80000]
+  save_iterations: [7000, 30000, 50000, 65000, 80000]
+  checkpoint_iterations: [7000, 30000, 50000, 65000, 80000]
+
+optim:
+  lambda_dssim: 0.2
+  lambda_sky: 0.05
+  # lambda_sky_scale: [ 1, 1, 0 ]
+  lambda_mask: 0.1
+  lambda_reg: 0.1
+  lambda_depth_lidar: 0.1
+
+  prune_box_interval: 100
+  densification_interval: 100
+  densify_from_iter: 500
+  densify_grad_threshold_bkgd: 0.0006
+  densify_grad_abs_bkgd: True
+  densify_grad_threshold_obj: 0.0002
+  densify_grad_abs_obj: False
+  densify_grad_threshold: 0.0002
+  densify_until_iter: 25000
+  feature_lr: 0.0025
+  max_screen_size: 20
+  min_opacity: 0.005
+  opacity_lr: 0.05
+  opacity_reset_interval: 3000
+  percent_big_ws: 0.1
+  percent_dense: 0.01
+  position_lr_delay_mult: 0.01
+  position_lr_final: 1.6e-06
+  position_lr_init: 0.00016
+  position_lr_max_steps: 50000
+  rotation_lr: 0.001
+  scaling_lr: 0.005
+  semantic_lr: 0.01
+
+  lambda_novel_reg: 1.0
+  lambda_novel_reg_depth: 0.1
+  refine_interval: 1
+  video_length: 16
+  conf_thresh: 0.65
+  refine_mode: "refine"
+  refine_strength: 0.6
+  reg_buffer_interval: 5000
+  shifted_per_cam: 2
+  reg_depth_thresh: -1.0
+  warp_refine: True
+  warp_cond: False
+
+  lidar_refine: False
+  detach_obj: False
+  lambda_obj: 0.1
+  side_scale: 1.2
+  shift_ratio: 0.5
+  shift_theta_range: -1.
+  shift_length_min: 2.0
+  shift_length_max: 4.0
+
+  track_position_lr_delay_mult: 0.01
+  track_position_lr_init: 0.0
+  track_position_lr_final: 0.0
+  track_position_max_steps: 30000
+
+  track_rotation_lr_delay_mult: 0.01
+  track_rotation_lr_init: 0.0
+  track_rotation_lr_final: 0.0
+  track_rotation_max_steps: 30000
+
+render:
+  fps: 24
+  concat_cameras: [1, 0, 2]

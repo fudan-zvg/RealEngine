@@ -1,0 +1,38 @@
+hydra:
+  run:
+    dir: ${output_dir}
+  output_subdir: ${output_dir}/code/hydra           # Store hydra's config breakdown here for debugging
+  searchpath: # Only <exp_dir> in these paths are discoverable
+    - pkg://navsim.planning.script.config.common
+  job:
+    chdir: False
+
+defaults:
+  - default_common
+  - default_evaluation
+  - default_scoring_parameters
+  - agent: constant_velocity_agent
+  - render: base
+  - _self_
+  - override train_test_split: navtest
+
+object_stats: {}
+metric_cache_path: ${oc.env:NAVSIM_EXP_ROOT}/metric_cache # path to metric cache
+gui_trajectory_path: ${oc.env:NAVSIM_DEVKIT_ROOT}/navsim/planning/script/config/gui_traj # path to gui trajectory
+
+eval_tokens_info: [
+  [ "0cc07a3667f45039", [ ] ],
+  [ "000f2b54319e5deb", [ ] ],
+  [ "2b1dfa4a1cfc541c", [ ] ],
+  [ "4c34860622605f7f", [ ] ],
+  [ "5dd66fecd1b4523b", [ ] ],
+  [ "38b01bebf6df5fb8", [ ] ],
+  [ "058e86bcd61a50f9", [ ] ],
+  [ "272ca65d545a5e6d", [ ] ],
+  [ "91568034cbf659a1", [ ] ],
+  [ "a4baa9a721715069", [ ] ],
+  [ "b1a87fffaada51de", [ ] ],
+  [ "b2ad937212f85714", [ ] ],
+  [ "b27306754bfc5000", [ ] ],
+  [ "e1f6521aad635044", [ ] ],
+]

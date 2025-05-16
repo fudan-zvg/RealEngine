@@ -1,0 +1,36 @@
+exhaust_test: false
+
+
+# ModelParams
+scene_type: "Kitti360"
+resolution_scales: [1, 2, 4]
+scale_increase_interval: 10000
+cam_num: 2
+eval: false
+num_pts: 600000
+t_init: 0.1
+separate_scaling_t: 0.2
+
+sequence_id: "1908"
+
+# PipelineParams
+
+
+# OptimizationParams
+iterations: 30000
+
+opacity_lr: 0.005
+
+densify_until_iter: 15000
+densify_grad_threshold: 1e-4
+sh_increase_interval: 2000
+
+
+lambda_v_reg: 0.01
+
+lambda_lidar: 1
+lidar_decay: 0
+
+only_velodyne: True
+lambda_intensity: 0.05
+lambda_raydrop: 0.05
