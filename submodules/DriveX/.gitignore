@@ -13,7 +13,7 @@ __pycache__/
 *.sh
 *.out
 *.ply
-*.png
+# *.png
 *tmp*
 
 exp_scripts
