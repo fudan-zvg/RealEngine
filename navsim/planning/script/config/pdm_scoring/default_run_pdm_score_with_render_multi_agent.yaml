@@ -96,7 +96,7 @@ eval_tokens_info: [
   ],
   [ "e1f6521aad635044", [
     { 'pose': "e1f6521aad635044_00", "object_name": "vehicle_4" },
-    { 'pose': "self", "object_name": "vehicle_5" },
+    { 'pose': "self", "object_name": "vehicle_6" },
   ]
   ],
   [ "e1f6521aad635044", [

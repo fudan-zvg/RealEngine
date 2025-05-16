@@ -150,6 +150,7 @@ def run_pdm_score(args: List[Dict[str, Union[List[str], DictConfig]]]) -> List[D
                 for obj_idx in range(obj_infos['obj_num']):
                     if obj_infos['obj_speeds'][obj_idx] is not None:
                         assert obj_infos['driving_command'][obj_idx] is not None
+                        obj_infos['obj_speeds'][obj_idx] = np.array(obj_infos['obj_speeds'][obj_idx])
                         continue
                     elif obj_infos['traj_names'][obj_idx] == "self":
                         obj_infos['obj_speeds'][obj_idx] = refer_agent_input.ego_statuses[3].ego_velocity
