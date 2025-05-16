@@ -3,7 +3,7 @@
 ### [[Project]]() [[Paper]]() 
 
 > [**RealEngine: Simulating Autonomous Driving in Realistic Context**](),            
-> [Junzhe Jiang](https://scholar.google.com/citations?user=gnDoDP4AAAAJ), [Nan Song](https://scholar.google.com/citations?user=wLZVtjEAAAAJ), [Jingyu Li](https://github.com/Whale-ice), [Xiatian Zhu](https://xiatian-zhu.github.io/), [Li Zhang](https://lzrobots.github.io)       
+> [Junzhe Jiang](https://scholar.google.com/citations?user=gnDoDP4AAAAJ), [Nan Song](https://scholar.google.com/citations?user=wLZVtjEAAAAJ), [Jingyu Li](https://github.com/Whale-ice), [Xiatian Zhu](https://xiatian-zhu.github.io/), [Li Zhang](https://lzrobots.github.io) 
 
 **Official implementation of "RealEngine: Simulating Autonomous Driving in Realistic Context".** 
 
@@ -103,3 +103,51 @@ train_test_split=mini agent=diffusiondrive_agent worker=single_machine_thread_po
 agent.checkpoint_path=model/diffusiondrive_navsim_88p1_PDMS.pth \
 experiment_name=diffusiondrive_agent_eval
 ```
+
+### 🏗️ Design your custom test cases 
+You can use [scripts/gui.py](scripts/gui.py) to construct the testing scenarios you require.
+```
+python scripts/gui.py
+```
+We model the trajectories using Bézier curves, allowing you to freely configure the trajectory of the inserted vehicles by controlling four control points, as illustrated in the figure below.
+<div align="center">
+  <img src="assets/gui.png"/>
+</div><br/>
+
+## 📊 Benchmark
+### Non-reactive simulation
+| Method                  | Loop       | Ego stat. | Image | LiDAR | NC ↑ | DAC ↑ | TTC ↑ | Comf. ↑ | EP ↑ | PDMS ↑ |
+|-------------------------|------------|-----------|-------|-------|------|--------|--------|----------|-------|---------|
+| Constant velocity  |            | ✓         |       |       | 92.9 | 64.3   | 85.7   | 100      | 29.4  | 46.8    |
+| **Open-loop**           |            |           |       |       |      |        |        |          |       |         |
+| ST-P3               | Open-loop  | ✓         | ✓     |      | 92.9 | 71.4   | 92.9   | 100      | 46.2  | 59.6    |
+| VAD                | Open-loop  | ✓         | ✓     |      | 92.9 | 85.7   | 92.9   | 100      | 48.5  | 66.1    |
+| TransFuser          | Open-loop  | ✓         | ✓     | ✓     | 92.9 | 85.7   | 92.9   | 100      | 55.9  | 69.1    |
+| DiffusionDrive    | Open-loop  | ✓         | ✓     | ✓     | 92.9 | 85.7   | 92.9   | 100      | 56.7  | **69.5** |
+| **Closed-loop**         |            |           |       |       |      |        |        |          |       |         |
+| ST-P3            | Closed-loop| ✓         | ✓     |    | 100  | 64.3   | 85.7   | 100      | 35.6  | 47.5    |
+| VAD                | Closed-loop| ✓         | ✓     |     | 85.7 | 78.6   | 92.9   | 100      | 34.3  | 53.0    |
+| TransFuser         | Closed-loop| ✓         | ✓     | ✓     | 92.9 | 71.4   | 85.7   | 100      | 46.0  | 57.9    |
+| DiffusionDrive    | Closed-loop| ✓         | ✓     | ✓     | 92.9 | 71.4   | 92.9   | 100      | 47.1  | **61.3** |
+| **Ground truth**         |            |           |       |       |      |        |        |          |       |         |
+| *Human*                 |            |           |       |       | 100  | 100    | 92.9   | 100      | 68.3  | 83.8    |
+
+### Safety test simulation
+| Method                    | Ego stat. | Image | LiDAR | NC ↑ | DAC ↑ | TTC ↑ | Conf. ↑ | EP ↑ | PDMS ↑ |
+|-----------------------|-----------|-------|-------|------|--------|--------|----------|-------|--------|
+| Constant velocity             | ✓         |       |       | 47.6 | 71.4   | 38.1   | 100      | 36.7  | 36.3   |
+| ST-P3                       | ✓         | ✓     |       | 47.6 | 100    | 42.9   | 100      | 44.7  | 44.4   |
+| VAD                        | ✓         | ✓     |       | 47.6 | 95.2   | 28.6   | 100      | 41.2  | 37.0   |
+| TransFuser                     | ✓         | ✓     | ✓     | 47.6 | 100    | 38.1   | 100      | 44.1  | 42.2   |
+| DiffusionDrive                | ✓         | ✓     | ✓     | 57.1 | 100    | 52.4   | 100      | 54.0  | **53.8** |
+
+
+
+### Multi-agent interaction simulation
+| Method                    | Ego stat. | Image | LiDAR | NC ↑ | DAC ↑ | TTC ↑ | Conf. ↑ | EP ↑ | PDMS ↑ |
+|-----------------------|-----------|-------|-------|------|--------|--------|----------|-------|--------|
+| Constant velocity              | ✓         |       |       | 42.8 | 60.7   | 39.3   | 100      | 27.8  | 27.4   |
+| ST-P3                        | ✓         | ✓     |       | 53.6 | 96.4   | 50.0   | 100      | 44.6  | 46.3   |
+| VAD                          | ✓         | ✓     |       | 32.1 | 71.4   | 32.1   | 100      | 27.7  | 28.8   |
+| TransFuser                   | ✓         | ✓     | ✓     | 60.7 | 96.4   | 53.6   | 100      | 54.3  | **55.0** |
+| DiffusionDrive          | ✓         | ✓     | ✓     | 57.1 | 96.4   | 50.0   | 100      | 51.7  | 51.9   |
