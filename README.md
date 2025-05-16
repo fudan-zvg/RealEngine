@@ -4,7 +4,6 @@
 
 > [**RealEngine: Simulating Autonomous Driving in Realistic Context**](),            
 > [Junzhe Jiang](https://scholar.google.com/citations?user=gnDoDP4AAAAJ), [Nan Song](https://scholar.google.com/citations?user=wLZVtjEAAAAJ), [Jingyu Li](https://github.com/Whale-ice), [Xiatian Zhu](https://xiatian-zhu.github.io/), [Li Zhang](https://lzrobots.github.io)       
-> **ArXiv preprint**
 
 **Official implementation of "RealEngine: Simulating Autonomous Driving in Realistic Context".** 
 
@@ -103,9 +102,4 @@ CUDA_VISIBLE_DEVICES=1 python navsim/planning/script/run_pdm_score_with_render_m
 train_test_split=mini agent=diffusiondrive_agent worker=single_machine_thread_pool \
 agent.checkpoint_path=model/diffusiondrive_navsim_88p1_PDMS.pth \
 experiment_name=diffusiondrive_agent_eval
-```
-
-## 📜 BibTeX
-``` bibtex
-
 ```
