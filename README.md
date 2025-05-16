@@ -109,7 +109,7 @@ You can use [scripts/gui.py](scripts/gui.py) to construct the testing scenarios 
 ```
 python scripts/gui.py
 ```
-We model the trajectories using Bézier curves, allowing you to freely configure the trajectory of the inserted vehicles by controlling four control points, as illustrated in the figure below.
+We model the trajectories using Bézier curves, allowing you to freely configure the trajectories of the inserted vehicles by controlling four control points, as illustrated in the figure below.
 <div align="center">
   <img src="assets/gui.png"/>
 </div><br/>
