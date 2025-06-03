@@ -1,8 +1,8 @@
 # RealEngine: Simulating Autonomous Driving in Realistic Context
 
-### [[Project]]() [[Paper]]() 
+### [[Project]]() [[Paper]](https://arxiv.org/abs/2505.16902) 
 
-> [**RealEngine: Simulating Autonomous Driving in Realistic Context**](),            
+> [**RealEngine: Simulating Autonomous Driving in Realistic Context**](https://arxiv.org/abs/2505.16902),            
 > [Junzhe Jiang](https://scholar.google.com/citations?user=gnDoDP4AAAAJ), [Nan Song](https://scholar.google.com/citations?user=wLZVtjEAAAAJ), [Jingyu Li](https://github.com/Whale-ice), [Xiatian Zhu](https://xiatian-zhu.github.io/), [Li Zhang](https://lzrobots.github.io) 
 
 **Official implementation of "RealEngine: Simulating Autonomous Driving in Realistic Context".** 
@@ -151,3 +151,13 @@ We model the trajectories using Bézier curves, allowing you to freely configure
 | VAD                          | ✓         | ✓     |       | 32.1 | 71.4   | 32.1   | 100      | 27.7  | 28.8   |
 | TransFuser                   | ✓         | ✓     | ✓     | 60.7 | 96.4   | 53.6   | 100      | 54.3  | **55.0** |
 | DiffusionDrive          | ✓         | ✓     | ✓     | 57.1 | 96.4   | 50.0   | 100      | 51.7  | 51.9   |
+
+## 📜 BibTeX
+``` bibtex
+@article{jiang2025realengine,
+    title={RealEngine: Simulating Autonomous Driving in Realistic Context},
+    author={Jiang, Junzhe and Song, Nan and Li, Jingyu and Zhu, Xiatian and Zhang, Li},
+    year={2025},
+    journal={arXiv preprint arXiv:2505.16902},
+}
+```
